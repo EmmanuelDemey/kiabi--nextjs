@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const getData = async () => {
+
   const response = await fetch("https://swapi.dev/api/people");
   const body = await response.json();
   return body.results;
@@ -9,10 +10,9 @@ const getData = async () => {
 export default async function Home() {
   
   const data = await getData();
-  console.log(data)
   return (
     <>
-      <h1>Star Wards list</h1>
+      <h1>Star Wars list</h1>
       <ul>
         { data.map((d: any, index: number) => {
           const id = d.url.replace("https://swapi.dev/api/people/", "").replace("/", "")
