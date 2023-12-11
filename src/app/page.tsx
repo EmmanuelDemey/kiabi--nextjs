@@ -1,8 +1,8 @@
 
 const getData = async () => {
-  const response = await fetch("http://localhost:3000/demo.json");
+  const response = await fetch("https://swapi.dev/api/people");
   const body = await response.json();
-  return body;
+  return body.results;
 }
 
 export default async function Home() {
@@ -10,6 +10,11 @@ export default async function Home() {
   const data = await getData();
   console.log(data)
   return (
-    <h1>Demo Nextjs { data.name } </h1>
+    <>
+      <h1>Star Wards list</h1>
+      <ul>
+        { data.map((d: any, index: number) => <li key={index}> { d.name } </li>)}
+      </ul>
+    </>
   )
 }
